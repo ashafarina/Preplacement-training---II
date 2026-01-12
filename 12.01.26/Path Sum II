@@ -1,0 +1,10 @@
+def pathSum(root, target):
+    res = []
+    def dfs(node, path, s):
+        if not node: return
+        if not node.left and not node.right and s+node.val==target:
+            res.append(path+[node.val])
+        dfs(node.left, path+[node.val], s+node.val)
+        dfs(node.right, path+[node.val], s+node.val)
+    dfs(root,[],0)
+    return res
