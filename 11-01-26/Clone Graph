@@ -1,0 +1,11 @@
+def cloneGraph(node):
+    oldToNew = {}
+    def dfs(n):
+        if n in oldToNew:
+            return oldToNew[n]
+        copy = Node(n.val)
+        oldToNew[n] = copy
+        for nei in n.neighbors:
+            copy.neighbors.append(dfs(nei))
+        return copy
+    return dfs(node) if node else None
