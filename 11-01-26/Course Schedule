@@ -1,0 +1,14 @@
+def canFinish(numCourses, prereq):
+    graph = [[] for _ in range(numCourses)]
+    for a,b in prereq:
+        graph[b].append(a)
+    visit = [0]*numCourses
+    def dfs(i):
+        if visit[i]==-1: return False
+        if visit[i]==1: return True
+        visit[i]=-1
+        for n in graph[i]:
+            if not dfs(n): return False
+        visit[i]=1
+        return True
+    return all(dfs(i) for i in range(numCourses))
