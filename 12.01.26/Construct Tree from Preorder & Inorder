@@ -1,0 +1,7 @@
+def buildTree(pre, ino):
+    if not pre: return None
+    root = TreeNode(pre[0])
+    i = ino.index(pre[0])
+    root.left = buildTree(pre[1:i+1], ino[:i])
+    root.right = buildTree(pre[i+1:], ino[i+1:])
+    return root
