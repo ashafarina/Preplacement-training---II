@@ -1,0 +1,9 @@
+def rightSideView(root):
+    res=[]
+    def dfs(n,d):
+        if not n: return
+        if d==len(res): res.append(n.val)
+        dfs(n.right,d+1)
+        dfs(n.left,d+1)
+    dfs(root,0)
+    return res
