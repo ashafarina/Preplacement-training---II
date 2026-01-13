@@ -1,0 +1,11 @@
+def zigzagLevelOrder(root):
+    if not root: return []
+    res=[]
+    q=[root]
+    rev=False
+    while q:
+        level=[n.val for n in q]
+        res.append(level[::-1] if rev else level)
+        q=[c for n in q for c in (n.left,n.right) if c]
+        rev=not rev
+    return res
