@@ -1,0 +1,5 @@
+def leastInterval(tasks,n):
+    from collections import Counter
+    cnt=Counter(tasks).values()
+    m=max(cnt)
+    return max(len(tasks),(m-1)*(n+1)+cnt.count(m))
