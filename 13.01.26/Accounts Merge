@@ -1,0 +1,18 @@
+def accountsMerge(accounts):
+    parent={}
+    def find(x):
+        parent.setdefault(x,x)
+        if parent[x]!=x:
+            parent[x]=find(parent[x])
+        return parent[x]
+    def union(a,b):
+        parent[find(a)]=find(b)
+    emailToName={}
+    for acc in accounts:
+        for e in acc[1:]:
+            emailToName[e]=acc[0]
+            union(acc[1],e)
+    groups={}
+    for e in emailToName:
+        groups.setdefault(find(e),[]).append(e)
+    return [[emailToName[k]]+sorted(v) for k,v in groups.items()]
