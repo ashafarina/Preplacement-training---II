@@ -1,0 +1,15 @@
+def findAnagrams(s,p):
+    from collections import Counter
+    res=[]
+    pc=Counter(p)
+    wc=Counter()
+    for i,c in enumerate(s):
+        wc[c]+=1
+        if i>=len(p):
+            if wc[s[i-len(p)]]==1:
+                del wc[s[i-len(p)]]
+            else:
+                wc[s[i-len(p)]]-=1
+        if wc==pc:
+            res.append(i-len(p)+1)
+    return res
